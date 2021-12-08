@@ -1,5 +1,6 @@
 <template>
   <div class="w-full sm:w-1/2 lg:w-1/3 mx-auto">
+
     <div class="flex items-center justify-between mb-8">
       <div class="text-white text-xl font-medium">Lista de tarefas</div>
     </div>
@@ -71,13 +72,18 @@
       <img src="@/assets/img/spinner.svg" alt="" class="inline-block w-5 h-5" />
     </div>
 
+    <div class="w-full mt-5 pb-60 h-screen overflow-y-scroll">
     <TodoCard
       v-for="todo in todos"
       :key="todo.id"
       :todo="todo"
       @afterDeleting="afterDeleting"
     />
-  </div>
+    </div>
+
+
+</div>
+ 
 </template>
 
 <script>
@@ -142,3 +148,14 @@ export default {
   },
 };
 </script>
+<style scoped>
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+</style>

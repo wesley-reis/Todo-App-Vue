@@ -26,7 +26,7 @@ export default {
 </script>
 <style scoped>
 .bg_layout {
-  @apply w-screen h-screen;
+  @apply w-screen h-screen fixed;
   background: linear-gradient(#04edb4, #058767);
   background-image: url(../assets/img/bg-layout-dash-two.png);
   background-position: center;
