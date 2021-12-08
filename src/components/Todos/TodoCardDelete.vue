@@ -1,7 +1,7 @@
 <template>
-    <div class="flex items-center justify-between bg-red-100 rounded-sm px-4 h-15 mb-2">
+    <div class="flex items-center justify-between bg-red-100 rounded-md py-3 px-4 h-15 mb-2">
         <div class="text-red-900 font-light truncate">
-            Deseja excluir <b>"{{ todo.label }}"</b>?
+            <span class="text-sm">Deseja excluir</span> <b class="font-semibold">"{{ todo.label }}"</b>?
         </div>
 
         <div class="flex items-center">
