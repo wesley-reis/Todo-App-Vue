@@ -5,9 +5,9 @@
 
 
 @layer components {
-    .btn{
-    /*    */
-    }
+    .bg-input{
+        background: #048968;
+      }
 }
 
 @layer base {

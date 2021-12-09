@@ -1,10 +1,23 @@
 <template>
   <div id="app">
-    <RouterView />
+    <LoadingScreen :isLoading="isLoading" />
+    <main v-if="!isLoading">
+      <RouterView />
+    </main>
   </div>
 </template>
-<style>
-.bg-input{
-  background: #048968;
-}
-</style>
+<script>
+import LoadingScreen from "./components/SplashScreen/LoadingScreen.vue";
+
+export default {
+  components: { LoadingScreen },
+  data() {
+    return { isLoading: true };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  },
+};
+</script>
