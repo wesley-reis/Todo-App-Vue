@@ -14,8 +14,7 @@ export default {
 
 <style scoped>
 .loader {
-  background: linear-gradient(#04edb4, #058767);
-  background-image: url(../../assets/img/bg-layout-Auth.png);
+  background-image: url(../../assets/img/bg-layout-init.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,7 +32,7 @@ export default {
 }
 
 .fadeout {
-  animation: fadeout 2s forwards;
+  animation: fadeout .5s forwards;
 }
 
 @keyframes fadeout {
