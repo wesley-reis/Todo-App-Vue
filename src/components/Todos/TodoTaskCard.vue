@@ -1,12 +1,12 @@
 <template>
-    <div class="flex items-center px-4 py-3 border-b border-gray-400 last:border-b-0">
+    <div class="flex items-center ml-2 mr-3 px-4 py-4 mb-3 border-b-2 border-gray-500 last:border-b-0">
         <div
-            class="cursor-pointer mr-2"
+            class="cursor-pointer mr-3"
             @click.stop.prevent="task.is_complete = !task.is_complete"
         >
             <svg
                 v-if="task.is_complete"
-                class="h-5 w-5 text-green-600"
+                class="h-5 w-5 text-purple-900"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@
                 v-else
                 class="h-5 w-5 flex items-center justify-center"
             >
-                <div class="h-4 w-4 rounded-full border-2 border-gray-400" />
+                <div class="h-4 w-4 rounded-full border-2 border-purple-900" />
             </div>
         </div>
 
@@ -34,18 +34,19 @@
                 ref="input"
                 type="text"
                 placeholder="Digite a sua tarefa"
-                class="bg-gray-300 placeholder-gray-500 text-gray-700 font-light focus:outline-none block w-full appearance-none leading-normal mr-3"
+                class="bg-transparent placeholder-gray-200 text-white font-light focus:outline-none block w-full appearance-none leading-normal mr-3"
+                :class="`${task.is_complete ? 'line-through text-purple-200' :''}`"
                 @input="handleInput"
             >
         </div>
-
+   
         <div class="ml-auto flex items-center justify-center">
             <button
                 class="focus:outline-none"
                 @click.stop.prevent="deleteTask()"
             >
                 <svg
-                    class="ml-3 h-4 w-4 text-gray-500"
+                    class="ml-3 h-4 w-4 text-red-800"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"

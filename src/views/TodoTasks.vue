@@ -18,7 +18,7 @@
                     class="-ml-2"
                 >
                     <svg
-                        class="h-5 w-5 text-gray-500 mr-2"
+                        class="h-7 w-7 text-purple-500 mr-2"
                         viewBox="0 0 20 20"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -33,34 +33,47 @@
                     </svg>
                 </RouterLink>
 
-                <div class="text-gray-500 font-medium">
+                <div class="text-white text-2xl font-medium">
                     {{ todo.label }}
                 </div>
             </div>
 
             <form
-                class="flex items-center px-4 bg-gray-900 h-15 rounded-sm border-l-2 border-green-400 mb-3"
+                class="input flex items-center px-4 h-15 rounded-md mb-3"
                 @submit.stop.prevent="addTask"
             >
                 <input
                     v-model="newTask"
                     placeholder="Adicione um novo item ..."
                     type="text"
-                    class="bg-gray-900 placeholder-gray-700 text-gray-500 font-light focus:outline-none block w-full appearance-none leading-normal pr-3"
+                    class="input placeholder-gray-300 text-white font-light focus:outline-none block w-full appearance-none leading-normal pr-3 py-3 px-4"
                 >
 
                 <button
-                    class="text-green-400 text-xs font-semibold focus:outline-none"
+                    class="flex items-center justify-center text-purple-800 text-xs font-semibold focus:outline-none"
                     type="submit"
                 >
                     ADICIONAR
+
+                    <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 ml-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
                 </button>
             </form>
 
-            <div
-                v-if="todo.tasks.length"
-                class="bg-gray-300 rounded-sm"
-            >
+         
+            <div v-if="todo.tasks.length" class="w-full mt-5 pb-60 shadow-2xl h-screen overflow-y-scroll">
                 <TodoTaskCard
                     v-for="task in todo.tasks"
                     :key="task.id"
@@ -71,7 +84,7 @@
 
             <div
                 v-else
-                class="text-center text-lg text-gray-600"
+                class="text-center text-lg text-purple-800"
             >
                 Você ainda não tem nenhuma tarefa.
             </div>
@@ -130,11 +143,6 @@
                 const idx = this.todo.tasks.findIndex(o => o.id === task.id);
                 this.todo.tasks.splice(idx, 1);
             },
-
-
-
-
-
         },
     };
 </script>

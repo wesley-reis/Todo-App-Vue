@@ -25,7 +25,7 @@
         type="text"
         class="
           input
-          placeholder-gray-400
+          placeholder-gray-300
           text-white
           font-light
           focus:outline-none
@@ -148,7 +148,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
