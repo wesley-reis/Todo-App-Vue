@@ -6,7 +6,7 @@
         >
             <img
                 src="@/assets/img/spinner.svg"
-                alt=""
+                alt="spinner"
                 class="inline-block w-5 h-5"
             >
         </div>
@@ -72,7 +72,6 @@
                 </button>
             </form>
 
-         
             <div v-if="todo.tasks.length" class="w-full mt-5 pb-60 shadow-2xl h-screen overflow-y-scroll">
                 <TodoTaskCard
                     v-for="task in todo.tasks"

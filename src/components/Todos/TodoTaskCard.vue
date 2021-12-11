@@ -91,6 +91,8 @@
         methods: {
             deleteTask() {
                 this.$axios.delete(`v1/todo-tasks/${this.task.id}`).then(() => {
+
+                    //emitir evento para limpar o campo do formulario pai TodoTasks
                     this.$emit('afterDeleting', this.task);
                 });
             },
@@ -103,7 +105,7 @@
 
                 this.$axios.put(`v1/todo-tasks/${this.task.id}`, payload);
             },
-
+            // dispara ajax assim que para de digitar no campo
             handleInput: debounce(function() {
                 this.updateTask();
             }, 300),
