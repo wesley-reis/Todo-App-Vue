@@ -82,11 +82,12 @@
         >
           {{ todo.label }}
         </RouterLink>
-
+   
         <span class="py-1 px-3 text-xs text-white rounded-full"
-        :class="`bg-${todo.status=='Pendente'? 'red' : (todo.status== 'Andamento'? 'yellow': 'green')}-500`">{{ todo.status }}</span>
+        :class="`bg-${this.status=='Pendente'? 'red' : (this.status== 'Andamento'? 'yellow': 'green')}-500`">{{ this.status }}</span>
       </div>
-    </div>
+      <span class="-mt-10 font-semibold text-xs text-purple-800">{{`Tarefas: ${this.todo.totalTasks} - Finalizadas: ${this.todo.tasksComplete}`}}</span>
+    </div> 
 </template>
 
 <script>
@@ -110,11 +111,12 @@ export default {
   },
 
   data() {
+    
     return {
-
+      status: (this.todo.totalTasks < this.todo.tasksComplete || this.todo.tasksComplete == 0 ? "Pendente" : (this.todo.tasksComplete < this.todo.totalTasks ? "Andamento" : "Finalizado")),
     };
   },
-
+  
   methods: {
     onUpdate() {
       this.$emit("update");

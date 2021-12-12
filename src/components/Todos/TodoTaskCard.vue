@@ -38,8 +38,9 @@
                 :class="`${task.is_complete ? 'line-through text-purple-200' :''}`"
                 @input="handleInput"
             >
+
         </div>
-   
+           
         <div class="ml-auto flex items-center justify-center">
             <button
                 class="focus:outline-none"
@@ -75,6 +76,7 @@
                 type: Object,
                 default: () => ({}),
             },
+            
         },
 
         data() {
