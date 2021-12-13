@@ -60,7 +60,7 @@
           Meu perfil
         </TwDropdownItem>
 
-        <TwDropdownItem :to="{ name: 'logout' }" class="cursor-pointer">
+        <TwDropdownItem v-on:click="logout" class="cursor-pointer">
           <svg
             class="
               mr-3
@@ -94,7 +94,7 @@
 import { mapState } from "vuex";
 import TwDropdown from "@/components/Utils/TwDropdown";
 import TwDropdownItem from "@/components/Utils/TwDropdownItem";
-
+import Cookie from "@/service/cookie"
 export default {
   name: "TheHeader",
 
@@ -113,7 +113,13 @@ export default {
     }),
   },
 
-  methods: {},
+  methods: {
+    logout()
+    {
+      Cookie.deleteToken();
+      this.$router.push({name:'login'});
+    }
+  },
 };
 </script>
 <style scoped>

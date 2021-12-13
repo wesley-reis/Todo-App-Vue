@@ -17,6 +17,43 @@
       tag="form"
       @submit.stop.prevent="update"
     >
+      <div class="flex flex-col justify-center items-center mb-5">
+        <label class="cursor-pointer text-center">
+          <span class="flex justify-center items-center text-xs text-purple-800"
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            <span v-if="imagepreview">Alterar Foto</span>
+            <span v-else>Incluir Foto</span>
+          </span>
+          <input
+            type="file"
+            v-on:change="imageSelected"
+            class="hidden"
+            id="customFile"
+          />
+        </label>
+
+        <img
+          v-if="imagepreview"
+          :src="imagepreview"
+          class="rounded-full border-2 border-purple-500 w-24"
+          alt="userFoto"
+        />
+      </div>
+
       <div class="grid grid-cols-2 gap-4">
         <div>
           <ValidationProvider
@@ -237,6 +274,8 @@ export default {
       spinner: {
         update_user: false,
       },
+      image: null,
+      imagepreview: null,
     };
   },
 
@@ -254,6 +293,16 @@ export default {
 
   methods: {
     ...mapMutations("user", ["STORE_USER"]),
+
+    imageSelected(e) {
+      this.image = e.target.files[0];
+
+      let reader = new FileReader();
+      reader.readAsDataURL(this.image);
+      reader.onload = (e) => {
+        this.imagepreview = e.target.result;
+      };
+    },
 
     async update() {
       const validator = await this.$refs.profileForm.validate();
