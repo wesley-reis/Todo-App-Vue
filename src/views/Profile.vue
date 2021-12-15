@@ -17,10 +17,17 @@
       tag="form"
       @submit.stop.prevent="update"
     >
-      <div class="flex flex-col justify-center items-center mb-5">
+      <div class="flex flex-col justify-center items-center mb-5 gap-2">
+        <img
+          v-if="imageSrc"
+          :src="imageSrc"
+          class="rounded-full border-2 border-purple-500 w-24 h-24"
+          alt="userFoto"
+        />
         <label class="cursor-pointer text-center">
-          <span class="flex justify-center items-center text-xs text-purple-800"
-            >
+          <span
+            class="flex justify-center items-center text-xs text-purple-800"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 mr-1"
@@ -35,23 +42,17 @@
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span v-if="imagepreview">Alterar Foto</span>
+            <span v-if="imageSrc">Alterar Foto</span>
             <span v-else>Incluir Foto</span>
           </span>
           <input
             type="file"
-            v-on:change="imageSelected"
+            @change="getAvatar"
             class="hidden"
             id="customFile"
           />
+          {{ this.user.avatar }}
         </label>
-
-        <img
-          v-if="imagepreview"
-          :src="imagepreview"
-          class="rounded-full border-2 border-purple-500 w-24"
-          alt="userFoto"
-        />
       </div>
 
       <div class="grid grid-cols-2 gap-4">
@@ -267,6 +268,7 @@ export default {
       lastName: "",
       email: "",
       password: "",
+      avatar: "",
       response: {
         color: "",
         message: "",
@@ -274,8 +276,7 @@ export default {
       spinner: {
         update_user: false,
       },
-      image: null,
-      imagepreview: null,
+     imageSrc:null
     };
   },
 
@@ -289,19 +290,17 @@ export default {
     this.firstName = this.user.first_name;
     this.lastName = this.user.last_name;
     this.email = this.user.email;
+    this.avatar = this.user.avatar;
   },
 
   methods: {
     ...mapMutations("user", ["STORE_USER"]),
 
-    imageSelected(e) {
-      this.image = e.target.files[0];
+    getAvatar($evt) {
+      let file = $evt.target.files[0];
 
-      let reader = new FileReader();
-      reader.readAsDataURL(this.image);
-      reader.onload = (e) => {
-        this.imagepreview = e.target.result;
-      };
+      this.user.avatar = URL.createObjectURL(file);
+      this.imageSrc = URL.createObjectURL(file);
     },
 
     async update() {
@@ -314,6 +313,7 @@ export default {
         first_name: this.firstName,
         last_name: this.lastName,
         email: this.email,
+        avatar: this.avatar,
       };
 
       if (this.password) {
@@ -322,7 +322,7 @@ export default {
 
       this.spinner.update_user = true;
       this.$axios
-        .put("v1/me", payload)
+        .post("v1/me", payload)
         .then((response) => {
           this.response.color = "green";
           this.response.message = "Seus dados foram atualizados com sucesso!";

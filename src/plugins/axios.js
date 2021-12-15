@@ -2,7 +2,7 @@ import axios from 'axios';
 import Vue from 'vue';
 import Cookie from '@/service/cookie';
 
-axios.defaults.baseURL = 'https://api.todolist.wdev.com.br/api/';
+axios.defaults.baseURL = 'http://localhost:8000/api/';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
