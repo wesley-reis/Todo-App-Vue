@@ -10,8 +10,8 @@
     <div class="flex items-center">
       <TwDropdown naked no-padding class="text-white">
         <template v-slot:button-content>
-          <svg
-            class="h-6 w-6 mr-1"
+          <svg v-if="!user.avatar"
+            class="h-9 w-9 mr-1"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +24,9 @@
               stroke-linejoin="round"
             />
           </svg>
+
+          <img v-if="user.avatar" :src="user.avatar" :alt="user.first_name" class="rounded-full mr-1 w-8 h-8 border-2 border-purple-700"/>
+
 
           {{ user.first_name }}
         </template>

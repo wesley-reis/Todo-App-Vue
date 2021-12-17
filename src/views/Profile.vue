@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-1/2 lg:w-1/3 mx-auto">
+  <div class="w-full sm:w-3/5 lg:w-2/4 xl:w-2/5 mx-auto">
     <div class="flex items-center justify-between mb-8">
       <div class="text-white text-xl font-medium">Meu perfil</div>
     </div>
@@ -19,8 +19,8 @@
     >
       <div class="flex flex-col justify-center items-center mb-5 gap-2">
         <img
-          v-if="imageSrc"
-          :src="imageSrc"
+          v-if="imageSrc || this.avatar"
+          :src="imageSrc || this.avatar"
           class="rounded-full border-2 border-purple-500 w-24 h-24"
           alt="userFoto"
         />
@@ -51,7 +51,6 @@
             class="hidden"
             id="customFile"
           />
-          {{ this.user.avatar }}
         </label>
       </div>
 
@@ -276,7 +275,7 @@ export default {
       spinner: {
         update_user: false,
       },
-     imageSrc:null
+      imageSrc: null,
     };
   },
 
@@ -299,7 +298,7 @@ export default {
     getAvatar($evt) {
       let file = $evt.target.files[0];
 
-      this.user.avatar = URL.createObjectURL(file);
+      this.avatar = file;
       this.imageSrc = URL.createObjectURL(file);
     },
 
@@ -309,15 +308,16 @@ export default {
         return;
       }
 
-      const payload = {
-        first_name: this.firstName,
-        last_name: this.lastName,
-        email: this.email,
-        avatar: this.avatar,
-      };
+      const payload = new FormData();
+      payload.append('first_name', this.firstName);
+      payload.append('last_name', this.lastName);
+      payload.append('email', this.email);
+      payload.append('avatar', this.avatar);
+
+      
 
       if (this.password) {
-        payload.password = this.password;
+        payload.append('password', this.password);
       }
 
       this.spinner.update_user = true;
