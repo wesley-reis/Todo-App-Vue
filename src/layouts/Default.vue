@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheHeader />
-    <div class="bg_layout px-3 py-10 md:px-10">
+    <div class="bg_layout px-3 py-10">
       <RouterView />
     </div>
   </div>

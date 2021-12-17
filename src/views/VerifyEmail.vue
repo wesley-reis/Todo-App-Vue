@@ -18,6 +18,8 @@
         {{ response.message }}
       </h3>
     </div>
+
+    <router-link :to="{ name: 'login' }" class="text-purple-400">Logar/Cadastrar</router-link>
   </div>
 </template>
 

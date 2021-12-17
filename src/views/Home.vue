@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-1/2 lg:w-1/3 mx-auto">
+  <div class="w-full sm:w-3/5 lg:w-2/4 xl:w-2/5 mx-auto">
 
     <div class="flex items-center justify-between mb-8">
       <div class="text-white text-xl font-medium">Lista de tarefas</div>

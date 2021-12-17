@@ -9,6 +9,12 @@
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@uppy/core": "^2.1.4",
+    "@uppy/file-input": "^2.0.5",
+    "@uppy/status-bar": "^2.1.2",
+    "@uppy/drag-drop": "^2.0.5",
+    "@uppy/tus": "^2.1.2",
+    "@uppy/xhr-upload": "^2.0.7",
     "autoprefixer": "^9",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
